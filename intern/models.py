@@ -9,6 +9,7 @@ class Users(models.Model):
         ('user', 'Oddiy foydalanuvchi'),
         ('teacher', "Ish o'rgatuvchi maxsus xodim"),
         ('intern', 'Stajor'),
+        ('chief', "Bo'lim boshlig'i"),
         ('admin', 'Admin')
     )
     full_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='F.I.Sh')
@@ -36,6 +37,9 @@ class Department(models.Model):
         verbose_name = "Department"
         verbose_name_plural = "Bo'limlar"
 
+    def __str__(self):
+        return self.name
+
 
 class TeacherProfile(models.Model):
     user = models.OneToOneField(Users, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Foydalanuvchi')
@@ -48,7 +52,22 @@ class TeacherProfile(models.Model):
         verbose_name_plural = "Ustoz xodimlar"
 
     def __str__(self):
-        return self.user
+        return self.user.full_name
+
+
+class ChiefProfile(models.Model):
+    user = models.OneToOneField(Users, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Foydalanuvchi')
+    department = models.OneToOneField(Department, on_delete=models.CASCADE, null=True, blank=True,
+                                      verbose_name="Bo'lim")
+    created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name="Yaratilgan vaqti")
+
+    class Meta:
+        db_table = "chief_profile"
+        verbose_name = "Chief"
+        verbose_name_plural = "Bo'lim boshliqlari"
+
+    def __str__(self):
+        return self.user.full_name
 
 
 class InternProfile(models.Model):
@@ -68,7 +87,7 @@ class InternProfile(models.Model):
         verbose_name_plural = "Stajorlar"
 
     def __str__(self):
-        return self.user
+        return self.user.full_name
 
 
 class HrProfile(models.Model):
@@ -81,7 +100,7 @@ class HrProfile(models.Model):
         verbose_name_plural = "Hr xodimlar"
 
     def __str__(self):
-        return self.user
+        return self.user.full_name
 
 
 class Mark(models.Model):
