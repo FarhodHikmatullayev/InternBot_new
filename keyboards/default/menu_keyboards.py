@@ -28,7 +28,8 @@ async def main_menu_default_keyboard(user_role):
                     KeyboardButton(text="👩‍🏫 Ish o'rgatuvchi xodimlar")  # O'qituvchilar tugmasi
                 ],
                 [
-                    KeyboardButton(text="Hr xodimlar")  # Hr xodimlar tugmasi
+                    KeyboardButton(text="🧑‍💼 Hr xodimlar"),  # Hr xodimlar tugmasi
+                    KeyboardButton(text="👔 Bo'lim boshliqlari")
                 ],
                 [
                     KeyboardButton(text="👥 Bo'limlar")  # Guruhlar tugmasi
