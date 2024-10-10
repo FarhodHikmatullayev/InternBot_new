@@ -232,17 +232,17 @@ class Database:
 
     # Mark functions
     async def create_mark(self, intern_id, muomala, kirishimlilik, chaqqonlik_va_malaka, masuliyat,
-                          ozlashtirish_qobiliyati, ichki_tartibga_rioyasi, shaxsiy_intizomi, teacher_id, description):
+                          ozlashtirish_qobiliyati, ichki_tartibga_rioyasi, shaxsiy_intizomi, rated_by_id, description):
         sql = """
         INSERT INTO mark (intern_id, muomala, kirishimlilik, chaqqonlik_va_malaka, 
                           masuliyat, ozlashtirish_qobiliyati, ichki_tartibga_rioyasi, 
-                          shaxsiy_intizomi, teacher_id, description, created_at) 
+                          shaxsiy_intizomi, rated_by_id, description, created_at) 
         VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) 
         RETURNING *
         """
         return await self.execute(sql, intern_id, muomala, kirishimlilik, chaqqonlik_va_malaka,
                                   masuliyat, ozlashtirish_qobiliyati, ichki_tartibga_rioyasi,
-                                  shaxsiy_intizomi, teacher_id, description, datetime.now(), fetchrow=True)
+                                  shaxsiy_intizomi, rated_by_id, description, datetime.now(), fetchrow=True)
 
     async def select_mark(self, mark_id):
         sql = "SELECT * FROM mark WHERE id = $1"
@@ -256,6 +256,18 @@ class Database:
         sql = "SELECT * FROM mark WHERE "
         sql, parameters = self.format_args(sql, parameters=kwargs)
         return await self.execute(sql, *parameters, fetch=True)
+
+    async def select_today_marks(self, intern_id, rated_by_id):
+        # Bugungi sanani olish
+        today = datetime.now().date()  # Faqat sanani olish uchun date() metodidan foydalaning
+
+        sql = """
+        SELECT * FROM mark 
+        WHERE intern_id = $1 
+          AND rated_by_id = $2
+          AND created_at::date = $3
+        """
+        return await self.execute(sql, intern_id, rated_by_id, today, fetch=True)
 
     async def update_mark(self, mark_id, **kwargs):
         set_clause = ", ".join([f"{key} = ${i + 1}" for i, key in enumerate(kwargs.keys())])

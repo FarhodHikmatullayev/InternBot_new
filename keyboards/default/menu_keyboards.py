@@ -44,10 +44,13 @@ async def main_menu_default_keyboard(user_role):
             resize_keyboard=True,
             keyboard=[
                 [
-                    KeyboardButton(text="👩‍🏫 Ish o'rgatuvchi xodimlar")  # O'qituvchilar tugmasi
+                    KeyboardButton(text="🌟 Stajorlarni baholash")
                 ],
                 [
                     KeyboardButton(text="👥 Bo'limlar")  # Guruhlar tugmasi
+                ],
+                [
+                    KeyboardButton(text="👩‍🏫 Ish o'rgatuvchi xodimlar")  # O'qituvchilar tugmasi
                 ],
                 [
                     KeyboardButton(text="👤 Mening Profilim")  # Mening profilim tugmasi
@@ -71,7 +74,7 @@ async def main_menu_default_keyboard(user_role):
             resize_keyboard=True,
             keyboard=[
                 [
-                    KeyboardButton(text="👥 Stajorlarni baholash")  # Guruhlarim tugmasi
+                    KeyboardButton(text="🌟 Stajorlarni baholash")  # Guruhlarim tugmasi
                 ],
                 [
                     KeyboardButton(text="👤 Mening Profilim")  # Mening profilim tugmasi
@@ -83,7 +86,7 @@ async def main_menu_default_keyboard(user_role):
             resize_keyboard=True,
             keyboard=[
                 [
-                    KeyboardButton(text="👥 Stajorlarni baholash")  # Guruhlarim tugmasi
+                    KeyboardButton(text="🌟 Stajorlarni baholash")  # Guruhlarim tugmasi
                 ],
                 [
                     KeyboardButton(text="👤 Mening Profilim")  # Mening profilim tugmasi

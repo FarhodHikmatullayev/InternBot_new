@@ -168,10 +168,9 @@ class Mark(models.Model):
         ],
         verbose_name='Shaxsiy intizomi'
     )
-    teacher = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE, null=True, blank=True,
-                                verbose_name="Ish o'rgatuvchi")
+    rated_by = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Baholagan shaxs")
     description = models.TextField(null=True, blank=True, verbose_name='Izoh')
-    created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name='Yaratilgan vaqt')
+    created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name='Baholangan vaqt')
 
     class Meta:
         db_table = 'mark'
@@ -179,4 +178,4 @@ class Mark(models.Model):
         verbose_name_plural = 'Baholar'
 
     def __str__(self):
-        return self.intern
+        return self.intern.user.full_name

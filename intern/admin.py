@@ -54,4 +54,4 @@ class ChiefProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Mark)
 class MarkAdmin(admin.ModelAdmin):
-    list_display = ('id', 'intern', 'teacher', 'created_at')
+    list_display = ('id', 'intern', 'rated_by', 'created_at')
