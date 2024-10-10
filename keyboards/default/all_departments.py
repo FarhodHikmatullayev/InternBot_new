@@ -13,6 +13,6 @@ async def all_departments_default_keyboard():
         text_button = department['name']
         markup.insert(KeyboardButton(text_button))
 
-    markup.insert(KeyboardButton(text="🔙 Orqaga"))
+    markup.insert(KeyboardButton(text="🔙 Bosh Menyu"))
 
     return markup
