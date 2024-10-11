@@ -1,9 +1,12 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
-class CreateChiefProfileState(StatesGroup):
+
+class CreateTeacherProfileState(StatesGroup):
     department_id = State()
     user_id = State()
 
-class DeleteChiefProfileState(StatesGroup):
+
+class DeleteTeacherProfileState(StatesGroup):
+    profile_id = State()
     department_id = State()
     user_id = State()

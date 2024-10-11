@@ -72,7 +72,7 @@ class ChiefProfile(models.Model):
 
 class InternProfile(models.Model):
     user = models.OneToOneField(Users, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Foydalanuvchi")
-    teacher = models.ForeignKey(TeacherProfile, on_delete=models.CASCADE, null=True, blank=True,
+    teacher = models.ForeignKey(TeacherProfile, on_delete=models.SET_NULL, null=True, blank=True,
                                 verbose_name="Ish o'rgatuchi")
     department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Bo'lim")
     internship_period = models.IntegerField(null=True, blank=True, validators=[

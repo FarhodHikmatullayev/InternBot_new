@@ -106,7 +106,6 @@ async def start_updating_department(message: types.Message, state: FSMContext):
         await DeleteDepartmentState.department_id.set()
         await state.update_data(department_id=department_id)
 
-
 @dp.message_handler(state=[UpdateDepartmentState.name, CreateChiefProfileState.user_id], text="🔙 Orqaga")
 @dp.message_handler(state=DepartmentState.department_id)
 async def get_department_name(message: types.Message, state: FSMContext):
@@ -114,7 +113,7 @@ async def get_department_name(message: types.Message, state: FSMContext):
     if department_name != "🔙 Orqaga":
         departments = await db.select_departments(name=department_name)
         if not departments:
-            text = "⚠️ Bu bo'lim allaqachon o'chirib yuborilgan"
+            text = "⚠️ Bunday bo'lim topilmadi"
             await message.answer(text=text, reply_markup=go_back_default_keyboard)
             return
         department = departments[0]
