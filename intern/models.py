@@ -168,7 +168,7 @@ class Mark(models.Model):
         ],
         verbose_name='Shaxsiy intizomi'
     )
-    rated_by = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Baholagan shaxs")
+    rated_by = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Baholagan shaxs")
     description = models.TextField(null=True, blank=True, verbose_name='Izoh')
     created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name='Baholangan vaqt')
 
