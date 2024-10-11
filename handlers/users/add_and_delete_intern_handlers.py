@@ -1,7 +1,5 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from pyexpat.errors import messages
-
 from keyboards.default.all_interns import all_interns_in_department_default_keyboard
 from keyboards.default.all_teachers import all_teachers_in_the_department_default_keyboard
 from keyboards.default.all_users import all_users_default_keyboard

@@ -31,7 +31,7 @@ async def mark_function(message: types.Message, state: FSMContext):
                                 reply_markup=back_to_menu)
         else:
             markup = await interns_default_keyboard(user_id=user['id'])
-            await message.answer(text="Baholash uchun o'quvchilardan birini tanlang 👇", reply_markup=markup)
+            await message.answer(text="Baholash uchun stajorlardan birini tanlang 👇", reply_markup=markup)
             await CreateMarkState.intern_id.set()
 
 
