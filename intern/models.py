@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.template.defaultfilters import default
 
 
 class Users(models.Model):
@@ -79,6 +80,7 @@ class InternProfile(models.Model):
         MinValueValidator(1),
         MaxValueValidator(90)
     ], verbose_name="Stajirovka muddati")
+    is_active = models.BooleanField(null=True, blank=True, default=True)
     created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name="Yaratilgan vaqti")
 
     class Meta:

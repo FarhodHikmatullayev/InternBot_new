@@ -204,8 +204,8 @@ class Database:
 
     # Intern Profile functions
     async def create_intern_profile(self, user_id, teacher_id, department_id, internship_period):
-        sql = "INSERT INTO intern_profile (user_id, teacher_id, department_id, internship_period, created_at) VALUES($1, $2, $3, $4, $5) RETURNING *"
-        return await self.execute(sql, user_id, teacher_id, department_id, internship_period, datetime.now(),
+        sql = "INSERT INTO intern_profile (user_id, teacher_id, department_id, internship_period, created_at, is_active) VALUES($1, $2, $3, $4, $5, $6) RETURNING *"
+        return await self.execute(sql, user_id, teacher_id, department_id, internship_period, datetime.now(), True,
                                   fetchrow=True)
 
     async def select_intern_profile(self, profile_id):
@@ -213,12 +213,18 @@ class Database:
         return await self.execute(sql, profile_id, fetchrow=True)
 
     async def select_all_intern_profiles(self):
-        sql = "SELECT * FROM intern_profile"
+        sql = "SELECT * FROM intern_profile WHERE is_active = TRUE"
         return await self.execute(sql, fetch=True)
 
     async def select_intern_profiles(self, **kwargs):
-        sql = "SELECT * FROM intern_profile WHERE "
-        sql, parameters = self.format_args(sql, parameters=kwargs)
+        sql = "SELECT * FROM intern_profile WHERE is_active = TRUE"
+
+        if kwargs:
+            sql += " AND "  # Qo'shimcha shartlar qo'shamiz
+            sql, parameters = self.format_args(sql, parameters=kwargs)
+        else:
+            parameters = []
+
         return await self.execute(sql, *parameters, fetch=True)
 
     async def update_intern_profile(self, profile_id, **kwargs):

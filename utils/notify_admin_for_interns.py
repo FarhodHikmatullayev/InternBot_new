@@ -6,16 +6,17 @@ from loader import db, bot
 
 async def notify_interns_with_ending_internship_period():
     while True:
-        now = datetime.now(timezone.utc)  # time zone qo'shildi
+        now = datetime.now(timezone.utc)
         interns = await db.select_all_intern_profiles()
         for intern in interns:
             internship_period = intern['internship_period']
             intern_user_id = intern['user_id']
             intern_user = await db.select_user(user_id=intern_user_id)
-            # end_time vaqt zonasi qo'shilgan holda hisoblanadi
+
             end_time = (intern['created_at'] + timedelta(days=internship_period)).replace(tzinfo=timezone.utc)
 
             if now > end_time:
+                await db.update_intern_profile(profile_id=intern['id'], is_active=False)
                 # for interns
                 await bot.send_message(
                     chat_id=intern_user['telegram_id'],
