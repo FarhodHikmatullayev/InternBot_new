@@ -31,6 +31,9 @@ async def main_menu_default_keyboard(user_role):
                     KeyboardButton(text="👥 Bo'limlar")  # Guruhlar tugmasi
                 ],
                 [
+                    KeyboardButton(text="📥 Baholarni yuklab olish")
+                ],
+                [
                     KeyboardButton(text="👤 Mening Profilim")  # Mening profilim tugmasi
                 ]
             ]
@@ -44,6 +47,9 @@ async def main_menu_default_keyboard(user_role):
                 ],
                 [
                     KeyboardButton(text="👥 Bo'limlar")  # Guruhlar tugmasi
+                ],
+                [
+                    KeyboardButton(text="📥 Baholarni yuklab olish")
                 ],
                 [
                     KeyboardButton(text="👤 Mening Profilim")  # Mening profilim tugmasi

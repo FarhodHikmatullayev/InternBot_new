@@ -270,3 +270,6 @@ async def get_description(message: types.Message, state: FSMContext):
             f"💬 Izohingiz: {description}")  # Izoh uchun ikonka
     await message.answer(text=text)
     await message.answer(text="Bu bahoni saqlashni xohlaysizmi?", reply_markup=confirm_keyboard)
+
+
+# for download marks for intern
