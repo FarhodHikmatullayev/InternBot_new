@@ -7,7 +7,7 @@ from loader import db, bot
 async def notify_teachers_for_mark_function():
     while True:
         now = datetime.now()
-        target_time = now.replace(hour=15, minute=28, second=20, microsecond=0)
+        target_time = now.replace(hour=16, minute=00, second=0, microsecond=0)
 
         if now >= target_time:
             target_time += timedelta(days=1)
