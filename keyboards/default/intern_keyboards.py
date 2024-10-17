@@ -8,15 +8,12 @@ async def interns_default_keyboard(user_id):
     hr_profiles = await db.select_hr_profiles(user_id=user_id)
     chief_profiles = await db.select_chief_profiles(user_id=user_id)
     if hr_profiles:
-        print(1)
         interns = await db.select_all_intern_profiles()
     elif chief_profiles:
-        print(2)
         chief_profile = chief_profiles[0]
         department_id = chief_profile['department_id']
         interns = await db.select_intern_profiles(department_id=department_id)
     else:
-        print(3)
         teacher = teacher_profiles[0]
         interns = await db.select_intern_profiles(teacher_id=teacher['id'])
 
@@ -24,7 +21,6 @@ async def interns_default_keyboard(user_id):
     markup.resize_keyboard = True
     markup.row_width = 2
     for intern in interns:
-        print('marta')
         user_id = intern['user_id']
         user = await db.select_user(user_id=user_id)
         text_button = user['full_name']

@@ -170,7 +170,6 @@ async def create_teacher_for_department(call: types.CallbackQuery, state: FSMCon
     data = await state.get_data()
     department_id = data.get('department_id')
     user_id = data.get('user_id')
-    print('user_id', user_id)
     await db.update_user(user_id=user_id, role='teacher')
     await db.create_teacher_profile(
         user_id=user_id,

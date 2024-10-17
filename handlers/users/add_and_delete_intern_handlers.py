@@ -95,7 +95,6 @@ async def get_teacher_full_name(message: types.Message, state: FSMContext):
 @dp.callback_query_handler(state=CreateInternState.internship_period, text='yes')
 async def create_intern_final_function(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    print('data', data)
     user_id = data.get('user_id')
     teacher_id = data.get('teacher_id')
     internship_period = data.get('internship_period')
@@ -156,7 +155,6 @@ async def get_internship_period(message: types.Message, state: FSMContext):
 @dp.callback_query_handler(state=DeleteInternState.intern_id, text='yes')
 async def delete_intern_final_function(call: types.CallbackQuery, state: FSMContext):
     data = await state.get_data()
-    print('data', data)
     user_id = data.get('user_id')
     intern_id = data.get('intern_id')
     department_id = data.get('department_id')

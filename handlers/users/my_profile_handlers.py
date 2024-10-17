@@ -10,7 +10,6 @@ from loader import dp, db, bot
 
 @dp.message_handler(text="👤 Mening Profilim", state="*")
 async def open_my_profile_function(message: types.Message, state: FSMContext):
-    print(1)
     try:
         await state.finish()
     except:
