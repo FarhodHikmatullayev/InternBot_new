@@ -35,3 +35,5 @@ async def get_pdf_information(message: types.Message, state: FSMContext):
                 await bot.send_document(chat_id=message.chat.id, document=doc_file)
         else:
             await message.reply("Kechirasiz, fayl topilmadi.")
+    else:
+        await message.reply("Kechirasiz, fayl topilmadi.")
