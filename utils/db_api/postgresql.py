@@ -283,3 +283,8 @@ class Database:
     async def delete_mark(self, mark_id):
         sql = "DELETE FROM mark WHERE id = $1 RETURNING *"
         return await self.execute(sql, mark_id, fetchrow=True)
+
+    # for pdf file
+    async def select_all_information_pdfs(self):
+        sql = "SELECT * FROM pdf_file"
+        return await self.execute(sql, fetch=True)

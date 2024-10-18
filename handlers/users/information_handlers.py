@@ -7,7 +7,6 @@ from keyboards.default.menu_keyboards import back_to_menu
 from loader import dp, db, bot
 
 
-
 @dp.message_handler(text="🏢 Kompaniya haqida ma'lumot", state="*")
 async def get_pdf_information(message: types.Message, state: FSMContext):
     try:
@@ -27,13 +26,12 @@ async def get_pdf_information(message: types.Message, state: FSMContext):
         await message.reply(text="⚠️ Bu buyruqdan foydalanish uchun sizda ruxsat mavjud emas!",
                             reply_markup=back_to_menu)
         return
-    pdf_document = PDFInformation.objects.first()  # Agar birinchi faylni olishni xohlasangiz
-    if pdf_document and pdf_document.pdf_file:
-        file_path = pdf_document.pdf_file.path  # Faylning to'liq yo'li
+    pdf_documents = await db.select_all_information_pdfs()  # Agar birinchi faylni olishni xohlasangiz
+    if pdf_documents and pdf_documents[0]['pdf_file']:
+        # file_path = 'media/pdfs/FARHODJON_HIKMATULLAYEVV.docx'
+        file_path = 'media/' + pdf_documents[0]['pdf_file']
         if os.path.exists(file_path):  # Fayl mavjudligini tekshirish
-            with open(file_path, 'rb') as pdf_file:
-                await bot.send_document(message.chat.id, pdf_file)
+            with open(file_path, 'rb') as doc_file:
+                await bot.send_document(chat_id=message.chat.id, document=doc_file)
         else:
-            await message.reply("Kechirasiz, PDF fayli topilmadi.")
-    else:
-        await message.reply("Kechirasiz, PDF fayli mavjud emas.")
+            await message.reply("Kechirasiz, fayl topilmadi.")
