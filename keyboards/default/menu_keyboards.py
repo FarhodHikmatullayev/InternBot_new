@@ -61,6 +61,9 @@ async def main_menu_default_keyboard(user_role):
             resize_keyboard=True,
             keyboard=[
                 [
+                    KeyboardButton(text="🏢 Kompaniya haqida ma'lumot")
+                ],
+                [
                     KeyboardButton(text="📊 Mening baholarim")  # Baholar reytingi tugmasi
                 ],
                 [

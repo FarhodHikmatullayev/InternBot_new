@@ -24,7 +24,7 @@ class TeacherProfileAdmin(admin.ModelAdmin):
 
 @admin.register(InternProfile)
 class InternProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'teacher', 'department', 'internship_period', 'created_at')
+    list_display = ('id', 'user', 'teacher', 'department', 'internship_period', 'is_active', 'created_at')
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "user":
@@ -55,3 +55,7 @@ class ChiefProfileAdmin(admin.ModelAdmin):
 @admin.register(Mark)
 class MarkAdmin(admin.ModelAdmin):
     list_display = ('id', 'intern', 'rated_by', 'created_at')
+
+@admin.register(PDFInformation)
+class PDFInformationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'created_at')

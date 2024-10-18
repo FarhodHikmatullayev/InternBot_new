@@ -1,7 +1,6 @@
 from django.db import models
 from datetime import datetime
 from django.core.validators import MinValueValidator, MaxValueValidator
-from django.template.defaultfilters import default
 
 
 class Users(models.Model):
@@ -80,7 +79,7 @@ class InternProfile(models.Model):
         MinValueValidator(1),
         MaxValueValidator(90)
     ], verbose_name="Stajirovka muddati")
-    is_active = models.BooleanField(null=True, blank=True, default=True)
+    is_active = models.BooleanField(null=True, blank=True, default=True, verbose_name="Aktivligi")
     created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name="Yaratilgan vaqti")
 
     class Meta:
@@ -170,7 +169,8 @@ class Mark(models.Model):
         ],
         verbose_name='Shaxsiy intizomi'
     )
-    rated_by = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Baholagan shaxs")
+    rated_by = models.ForeignKey(Users, on_delete=models.SET_NULL, null=True, blank=True,
+                                 verbose_name="Baholagan shaxs")
     description = models.TextField(null=True, blank=True, verbose_name='Izoh')
     created_at = models.DateTimeField(null=True, blank=True, default=datetime.now(), verbose_name='Baholangan vaqt')
 
@@ -181,3 +181,16 @@ class Mark(models.Model):
 
     def __str__(self):
         return self.intern.user.full_name
+
+
+class PDFInformation(models.Model):
+    name = models.CharField(max_length=221, null=True, blank=True, verbose_name="Fayl nomi")
+    pdf_file = models.FileField(null=True, blank=True, upload_to="pdfs/", verbose_name="PDF file")
+    created_at = models.DateTimeField(null=True, blank=True, auto_now_add=True, verbose_name="Yaratilgan vaqti")
+
+    class Meta:
+        db_table = 'pdf_file'
+        verbose_name = "pdf_information"
+        verbose_name_plural = "PDF File"
+    def __str__(self):
+        return self.name
